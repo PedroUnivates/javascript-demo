@@ -52,6 +52,8 @@ public class UsuarioController {
         }
 
     }
+    
+    
 
     public Usuario buscar(int id) {
         try {
@@ -97,6 +99,26 @@ public class UsuarioController {
 
         return null;
 
+    }
+    
+    public boolean excluir(int id) {
+        
+        Conexao.abreConexao();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = Conexao.con.prepareStatement("DELETE FROM usuarios WHERE id=?");
+            stmt.setInt(1,id);
+            
+            stmt.executeUpdate();
+            
+            return true;
+        }catch (SQLException ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }finally{
+            Conexao.closeConnection(Conexao.con,stmt);
+        }
     }
 
     public boolean verificaExistencia(Usuario objUsuario) {

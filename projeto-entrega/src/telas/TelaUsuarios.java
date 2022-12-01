@@ -75,6 +75,8 @@ public class TelaUsuarios extends javax.swing.JFrame {
         }
     }
     
+    
+    
     private void guardarDados(){
         try{
             
@@ -335,11 +337,25 @@ public class TelaUsuarios extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
+        
+        
+        
         try{
             boolean wPergunta = CaixaDeDialogo.obterinstancia().pedirConfirmacao("Tem certeza de que deseja excluir?","",'p');
 
             if (wPergunta == true){
-
+                objUsuarioController = new UsuarioController();
+                boolean retorno = objUsuarioController
+                        .excluir(Integer.parseInt(txtId.getText()));
+                if(retorno){
+                    //mensagem OK
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário Excluído com sucesso");
+                    
+                    limparCampos();                 
+                }else{
+                    //mensagem ERRO
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Impossível Excluir Usuário");
+                }
             }
 
         }catch(Exception ex){
