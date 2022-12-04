@@ -241,12 +241,12 @@ public class TelaProdutos extends javax.swing.JFrame {
             //verificar se o usuário já existe
             objProdutoController = new ProdutoController();
             if (objProdutoController.verificaExistencia(objProduto)) {
-                CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário já existe!", 'e');
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Produto já existe!", 'e');
             }else{
                 if(objProdutoController.incluir(objProduto) == true){
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário incluído com Sucesso ("+ objProduto.getCod() +")!");
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Produto incluído com Sucesso ("+ objProduto.getCod() +")!");
                 }else{
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir usuário!", 'e');
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir produto!", 'e');
                 }
                 
             }
@@ -267,12 +267,12 @@ public class TelaProdutos extends javax.swing.JFrame {
                 //verificar se o usuário já existe
                 objProdutoController = new ProdutoController();
                 if (objProdutoController.verificaExistencia(objProduto)) {
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário já existe!", 'e');
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Produto já existe!", 'e');
                 }else{
                     if(objProdutoController.alterar(objProduto) == true){
-                        CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário alterado com Sucesso ("+ objProduto.getCod() +")!");
+                        CaixaDeDialogo.obterinstancia().exibirMensagem("Produto alterado com Sucesso ("+ objProduto.getCod() +")!");
                     }else{
-                        CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao alterar usuário!", 'e');
+                        CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao alterar produto!", 'e');
                     }
                 }
 
@@ -296,12 +296,12 @@ public class TelaProdutos extends javax.swing.JFrame {
                         .excluir(Integer.parseInt(txtCod.getText()));
                 if(retorno){
                     //mensagem OK
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário Excluído com sucesso");
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Produto Excluído com sucesso");
                     
                     limparCampos();                 
                 }else{
                     //mensagem ERRO
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Impossível Excluir Usuário");
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Impossível Excluir Produto");
                 }
             }
                     
@@ -325,7 +325,7 @@ public class TelaProdutos extends javax.swing.JFrame {
                 if (objProduto != null && objProduto.getCod() > 0){
                     preencherCampos();
                 }else{
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao buscar Usuário no BD!");
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao buscar Produto no BD!");
                 }
             //}
 
@@ -343,11 +343,11 @@ public class TelaProdutos extends javax.swing.JFrame {
     private boolean validarDados() {
         
         if (txtProduto.getText().equals("")) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o nome do usuário", 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o nome do produto", 'e');
             return false;
 
         }else if (txtFornecedor.getText().equals("")) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o login do usuário", 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o fornecedor do produto", 'e');
             return false;
 
         }
