@@ -61,6 +61,8 @@ public class TelaUsuarios extends javax.swing.JFrame {
             txtLogin.setText("");
             txtTelefone.setText("");
             txtEmail.setText("");
+            txtSenha.setText("");
+            txtConfirmacaoSenha.setText("");
             
             btnIncluir.setEnabled(true);            
             btnAlterar.setEnabled(false);

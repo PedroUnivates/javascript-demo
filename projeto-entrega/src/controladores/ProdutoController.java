@@ -20,7 +20,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import modelos.Usuario;
 import modelos.Produto;
 
 /**
@@ -29,39 +28,7 @@ import modelos.Produto;
  */
 public class ProdutoController {
 
-    public boolean login(String user, String pass) {
-        try {
-            Conexao.abreConexao();
-            ResultSet rs = null;
-            PreparedStatement stmt;
 
-            String wSql = "";
-            wSql = " SELECT nome ";
-            wSql += " FROM produtos ";
-            wSql += " WHERE produto = ? ";
-            
-
-            try {
-                System.out.println("Vai Executar Conexão em buscar Usuario");
-                stmt = Conexao.con.prepareStatement(wSql);
-                stmt.setString(1, user);
-                stmt.setString(2, pass);
-
-                rs = stmt.executeQuery();
-
-                return rs.next();
-
-            } catch (SQLException ex) {
-                System.out.println("ERRO de SQL: " + ex.getMessage().toString());
-                return false;
-            }
-
-        } catch (Exception e) {
-            System.out.println("ERRO: " + e.getMessage().toString());
-            return false;
-        }
-
-    }
     
     
 
@@ -89,6 +56,7 @@ public class ProdutoController {
                     objProduto = new Produto();
                     objProduto.setCod(rs.getInt("cod"));
                     objProduto.setProduto(rs.getString("produto"));
+                    objProduto.setFornecedor(rs.getString("fornecedor"));
 
 
                     return objProduto;
@@ -114,7 +82,7 @@ public class ProdutoController {
         PreparedStatement stmt = null;
         
         try {
-            stmt = Conexao.con.prepareStatement("DELETE FROM produto WHERE cod=?");
+            stmt = Conexao.con.prepareStatement("DELETE FROM produtos WHERE cod=?");
             stmt.setInt(1,cod);
             
             stmt.executeUpdate();
@@ -173,8 +141,9 @@ public class ProdutoController {
             Conexao.abreConexao();
             PreparedStatement stmt = null;
 
-            stmt = Conexao.con.prepareStatement("INSERT INTO usuarios (produto) VALUES(?)");
+            stmt = Conexao.con.prepareStatement("INSERT INTO produtos (produto, fornecedor) VALUES(?,?)");
             stmt.setString(1, objProduto.getProduto());
+            stmt.setString(2, objProduto.getFornecedor());
 
 
             stmt.executeUpdate();
@@ -195,7 +164,8 @@ public class ProdutoController {
         Vector<String> cabecalhos = new Vector<String>();
         Vector dadosTabela = new Vector();
         cabecalhos.add("Cod");
-        cabecalhos.add("Produto");        
+        cabecalhos.add("Produto");      
+        cabecalhos.add("Fornecedor"); 
         
 
 
@@ -205,7 +175,7 @@ public class ProdutoController {
         try {
 
             String sql = "";
-            sql = "SELECT cod, produto";
+            sql = "SELECT cod, produto, fornecedor";
             sql += " FROM produtos ";
             sql += " ORDER BY produto ";
 
@@ -214,7 +184,8 @@ public class ProdutoController {
             while (result.next()) {
                 Vector<Object> linha = new Vector<Object>();
                 linha.add(result.getInt("cod"));
-                linha.add(result.getString("produto"));                
+                linha.add(result.getString("produto"));  
+                linha.add(result.getString("fornecedor"));
                 
 
                 dadosTabela.add(linha);
@@ -277,9 +248,11 @@ public class ProdutoController {
         PreparedStatement stmt = null;
         
         try {
-            stmt = Conexao.con.prepareStatement("UPDATE produtos SET produto=?, WHERE cod=? ");
+            stmt = Conexao.con.prepareStatement("UPDATE produtos SET produto=?, fornecedor=? WHERE cod=? ");
             stmt.setString(1, objProduto.getProduto());
-            stmt.setInt(2, objProduto.getCod());
+            stmt.setString(2, objProduto.getFornecedor());
+            stmt.setInt(3, objProduto.getCod());
+            
             
             stmt.executeUpdate();
             

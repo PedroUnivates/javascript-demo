@@ -13,6 +13,7 @@ public class Produto {
     
     private int cod;
     private String produto;
+    private String fornecedor;
 
 
     public int getCod() {
@@ -29,5 +30,12 @@ public class Produto {
 
     public void setProduto(String produto) {
         this.produto = produto;
+    }
+        public String getFornecedor() {
+        return fornecedor;
+    }
+        
+    public void setFornecedor(String fornecedor) {
+        this.fornecedor = fornecedor;
     }
 }
