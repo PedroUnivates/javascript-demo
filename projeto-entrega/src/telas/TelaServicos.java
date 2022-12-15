@@ -5,23 +5,22 @@
  */
 package telas;
 
-
-import controladores.ProdutoController;
+import controladores.ServicoController;
 import ferramentas.CaixaDeDialogo;
-import modelos.Produto;
+import modelos.Servico;
 
 /**
  *
  * @author pedro.azevedo1
  */
-public class TelaProdutos extends javax.swing.JFrame {
+public class TelaServicos extends javax.swing.JFrame {
 
-    Produto objProduto;
-    ProdutoController objProdutoController;
+    Servico objServico;
+    ServicoController objServicoController;
     /**
      * Creates new form TelaUsuarios
      */
-    public TelaProdutos() {
+    public TelaServicos() {
         initComponents();
         
         limparCampos();
@@ -29,22 +28,22 @@ public class TelaProdutos extends javax.swing.JFrame {
     }
     
     private void atualizarLista(){
-        objProdutoController = new ProdutoController();
-        objProdutoController.preencherLista(jtbProdutos);
+        objServicoController = new ServicoController();
+        objServicoController.preencherLista(jtbServicos);
     }
     
     private void preencherCampos(){
         try{
             
-            txtCod.setText(String.valueOf(objProduto.getCod()));
-            txtProduto.setText(objProduto.getProduto());
-            txtFornecedor.setText(objProduto.getFornecedor());
-            
+            txtCod.setText(String.valueOf(objServico.getCod()));
+            txtServico.setText(objServico.getServico());
+            txtPrestador.setText(objServico.getPrestador());
+            txtValor.setText(objServico.getValor());
+            txtMedida.setText(objServico.getMedida());
             
             btnIncluir.setEnabled(false);            
             btnAlterar.setEnabled(true);
             btnExcluir.setEnabled(true);
-           
 
             
         }catch(Exception ex){
@@ -56,14 +55,14 @@ public class TelaProdutos extends javax.swing.JFrame {
         try{
             
             txtCod.setText("COD");
-            txtProduto.setText("");
-            txtFornecedor.setText("");
-            
+            txtServico.setText("");
+            txtPrestador.setText("");
+            txtValor.setText("");
+            txtMedida.setText("");
             
             btnIncluir.setEnabled(true);            
             btnAlterar.setEnabled(false);
             btnExcluir.setEnabled(false);
-            
             
             atualizarLista();
             
@@ -72,13 +71,16 @@ public class TelaProdutos extends javax.swing.JFrame {
         }
     }
     
+    
+    
     private void guardarDados(){
         try{
             
-            objProduto = new Produto();
-            objProduto.setProduto(txtProduto.getText());         
-            objProduto.setFornecedor(txtFornecedor.getText());
-            
+            objServico = new Servico();
+            objServico.setServico(txtServico.getText());
+            objServico.setPrestador(txtValor.getText());
+            objServico.setValor(txtPrestador.getText());
+            objServico.setMedida(txtMedida.getText());
             
         }catch(Exception ex){
             CaixaDeDialogo.obterinstancia().exibirMensagem(ex.getMessage());
@@ -95,27 +97,44 @@ public class TelaProdutos extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtProduto = new javax.swing.JTextField();
-        txtFornecedor = new javax.swing.JTextField();
+        txtServico = new javax.swing.JTextField();
+        txtPrestador = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        txtValor = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnIncluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtbProdutos = new javax.swing.JTable();
+        jtbServicos = new javax.swing.JTable();
         btnLimpar = new javax.swing.JButton();
         txtCod = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtMedida = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
-        jLabel1.setText("Produto");
+        jLabel1.setText("Serviço");
 
-        jLabel2.setText("Fornecedor");
+        jLabel2.setText("Prestador");
+
+        txtValor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValorActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Valor");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Cadastro de Produtos");
+        jLabel5.setText("Cadastro de Serviços");
 
         btnIncluir.setText("INCLUIR");
         btnIncluir.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +157,7 @@ public class TelaProdutos extends javax.swing.JFrame {
             }
         });
 
-        jtbProdutos.setModel(new javax.swing.table.DefaultTableModel(
+        jtbServicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -149,12 +168,12 @@ public class TelaProdutos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtbProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtbServicos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jtbProdutosMousePressed(evt);
+                jtbServicosMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(jtbProdutos);
+        jScrollPane1.setViewportView(jtbServicos);
 
         btnLimpar.setText("LIMPAR");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -165,39 +184,41 @@ public class TelaProdutos extends javax.swing.JFrame {
 
         txtCod.setText("COD");
 
+        jLabel7.setText("Medida");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(txtCod)
+                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCod)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1)
+                                    .addComponent(txtServico, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
                                 .addComponent(btnIncluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAlterar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnLimpar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExcluir)))
+                                .addComponent(btnExcluir))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtValor, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtMedida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -213,20 +234,28 @@ public class TelaProdutos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(txtServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(51, 51, 51)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIncluir)
                     .addComponent(btnAlterar)
                     .addComponent(btnLimpar)
                     .addComponent(btnExcluir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -239,16 +268,15 @@ public class TelaProdutos extends javax.swing.JFrame {
             guardarDados();
             
             //verificar se o usuário já existe
-            objProdutoController = new ProdutoController();
-            if (objProdutoController.verificaExistencia(objProduto)) {
-                CaixaDeDialogo.obterinstancia().exibirMensagem("Produto já existe!", 'e');
+            objServicoController = new ServicoController();
+            if (objServicoController.verificaExistencia(objServico)) {
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário já existe!", 'e');
             }else{
-                if(objProdutoController.incluir(objProduto) == true){
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Produto incluído com Sucesso ("+ objProduto.getCod() +")!");
+                if(objServicoController.incluir(objServico) == true){
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário incluído com Sucesso ("+ objServico.getCod() +")!");
                 }else{
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir produto!", 'e');
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir usuário!", 'e');
                 }
-                
             }
             
             limparCampos();
@@ -262,17 +290,17 @@ public class TelaProdutos extends javax.swing.JFrame {
             if(validarDados()){
             
                 guardarDados();
-                objProduto.setCod(Integer.parseInt(txtCod.getText()));
+                objServico.setCod(Integer.parseInt(txtCod.getText()));
 
                 //verificar se o usuário já existe
-                objProdutoController = new ProdutoController();
-                if (objProdutoController.verificaExistencia(objProduto)) {
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Produto já existe!", 'e');
+                objServicoController = new ServicoController();
+                if (objServicoController.verificaExistencia(objServico)) {
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário já existe!", 'e');
                 }else{
-                    if(objProdutoController.alterar(objProduto) == true){
-                        CaixaDeDialogo.obterinstancia().exibirMensagem("Produto alterado com Sucesso ("+ objProduto.getCod() +")!");
+                    if(objServicoController.alterar(objServico) == true){
+                        CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário alterado com Sucesso ("+ objServico.getCod() +")!");
                     }else{
-                        CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao alterar produto!", 'e');
+                        CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao alterar usuário!", 'e');
                     }
                 }
 
@@ -287,52 +315,55 @@ public class TelaProdutos extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
+        
+        
+        
         try{
             boolean wPergunta = CaixaDeDialogo.obterinstancia().pedirConfirmacao("Tem certeza de que deseja excluir?","",'p');
 
             if (wPergunta == true){
-                objProdutoController = new ProdutoController();
-                boolean retorno = objProdutoController
+                objServicoController = new ServicoController();
+                boolean retorno = objServicoController
                         .excluir(Integer.parseInt(txtCod.getText()));
                 if(retorno){
                     //mensagem OK
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Produto Excluído com sucesso");
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário Excluído com sucesso");
                     
                     limparCampos();                 
                 }else{
                     //mensagem ERRO
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Impossível Excluir Produto");
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Impossível Excluir Usuário");
                 }
             }
-                    
+
         }catch(Exception ex){
             CaixaDeDialogo.obterinstancia().exibirMensagem("Erro: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void jtbProdutosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbProdutosMousePressed
+    private void jtbServicosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbServicosMousePressed
         // TODO add your handling code here:
         try{
 
-            int linhaSelecionada = jtbProdutos.getSelectedRow();//pega a linha selecionada
-            String codProduto = jtbProdutos.getModel()
+            int linhaSelecionada = jtbServicos.getSelectedRow();//pega a linha selecionada
+            String codServico = jtbServicos.getModel()
             .getValueAt(linhaSelecionada, 0).toString(); // Primeira coluna da linha
 
             //if(jtbUsuarios.isColumnSelected(2)){
-                ProdutoController objProdutoController = new ProdutoController();
+                ServicoController objServicoController = new ServicoController();
 
-                objProduto = objProdutoController.buscar(Integer.parseInt(codProduto));
-                if (objProduto != null && objProduto.getCod() > 0){
+                objServico = objServicoController.buscar(Integer.parseInt(codServico));
+                if (objServico != null && objServico.getCod() > 0){
                     preencherCampos();
                 }else{
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao buscar Produto no BD!");
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao buscar Usuário no BD!");
                 }
             //}
 
         }catch(Exception ex){
             CaixaDeDialogo.obterinstancia().exibirMensagem(ex.getMessage(), 'e');
         }
-    }//GEN-LAST:event_jtbProdutosMousePressed
+    }//GEN-LAST:event_jtbServicosMousePressed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         
@@ -340,20 +371,34 @@ public class TelaProdutos extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnLimparActionPerformed
 
+    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorActionPerformed
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMousePressed
+
     private boolean validarDados() {
         
-        if (txtProduto.getText().equals("")) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o nome do produto", 'e');
+        if (txtServico.getText().equals("")) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o nome do usuário", 'e');
             return false;
-
-        }else if (txtFornecedor.getText().equals("")) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o fornecedor do produto", 'e');
+        }else if (txtPrestador.getText().equals("")) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o telefone do usuário", 'e');
             return false;
-
+        }else if (txtValor.getText().equals("")) {
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o login do usuário", 'e');
+            return false;
+        }else if (txtMedida.getText().equals("")){
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o email do usuário", 'e');
+            return false;
+      
         }
         return true;
         
     }
+    
 
     /**
      * @param args the command line arguments
@@ -372,21 +417,23 @@ public class TelaProdutos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaServicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaServicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaServicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaServicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaProdutos().setVisible(true);
+                new TelaServicos().setVisible(true);
             }
         });
     }
@@ -398,11 +445,15 @@ public class TelaProdutos extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtbProdutos;
+    private javax.swing.JTable jtbServicos;
     private javax.swing.JLabel txtCod;
-    private javax.swing.JTextField txtFornecedor;
-    private javax.swing.JTextField txtProduto;
+    private javax.swing.JTextField txtMedida;
+    private javax.swing.JTextField txtPrestador;
+    private javax.swing.JTextField txtServico;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }
