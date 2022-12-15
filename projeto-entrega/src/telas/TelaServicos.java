@@ -78,8 +78,8 @@ public class TelaServicos extends javax.swing.JFrame {
             
             objServico = new Servico();
             objServico.setServico(txtServico.getText());
-            objServico.setPrestador(txtValor.getText());
-            objServico.setValor(txtPrestador.getText());
+            objServico.setPrestador(txtPrestador.getText());
+            objServico.setValor(txtValor.getText());
             objServico.setMedida(txtMedida.getText());
             
         }catch(Exception ex){
@@ -194,31 +194,31 @@ public class TelaServicos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(txtCod)
-                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1)
-                                    .addComponent(txtServico, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(txtServico, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtValor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(txtPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)))
+                            .addComponent(txtCod)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnIncluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAlterar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnLimpar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExcluir))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtValor, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtMedida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnExcluir)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -230,32 +230,31 @@ public class TelaServicos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCod)
                 .addGap(1, 1, 1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(51, 51, 51)
-                .addComponent(jLabel4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrestador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIncluir)
                     .addComponent(btnAlterar)
                     .addComponent(btnLimpar)
                     .addComponent(btnExcluir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
 
         pack();
@@ -267,15 +266,15 @@ public class TelaServicos extends javax.swing.JFrame {
             
             guardarDados();
             
-            //verificar se o usuário já existe
+            //verificar se o serviço já existe
             objServicoController = new ServicoController();
             if (objServicoController.verificaExistencia(objServico)) {
-                CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário já existe!", 'e');
+                CaixaDeDialogo.obterinstancia().exibirMensagem("Serviço já existente!", 'e');
             }else{
                 if(objServicoController.incluir(objServico) == true){
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário incluído com Sucesso ("+ objServico.getCod() +")!");
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Serviço incluído com Sucesso ("+ objServico.getCod() +")!");
                 }else{
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir usuário!", 'e');
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao incluir serviço!", 'e');
                 }
             }
             
@@ -292,15 +291,15 @@ public class TelaServicos extends javax.swing.JFrame {
                 guardarDados();
                 objServico.setCod(Integer.parseInt(txtCod.getText()));
 
-                //verificar se o usuário já existe
+                //verificar se o serviço já existe
                 objServicoController = new ServicoController();
                 if (objServicoController.verificaExistencia(objServico)) {
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário já existe!", 'e');
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Serviço já existente!", 'e');
                 }else{
                     if(objServicoController.alterar(objServico) == true){
-                        CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário alterado com Sucesso ("+ objServico.getCod() +")!");
+                        CaixaDeDialogo.obterinstancia().exibirMensagem("Serviço alterado com Sucesso ("+ objServico.getCod() +")!");
                     }else{
-                        CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao alterar usuário!", 'e');
+                        CaixaDeDialogo.obterinstancia().exibirMensagem("Erro na alteraração de serviço!", 'e');
                     }
                 }
 
@@ -327,12 +326,12 @@ public class TelaServicos extends javax.swing.JFrame {
                         .excluir(Integer.parseInt(txtCod.getText()));
                 if(retorno){
                     //mensagem OK
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Usuário Excluído com sucesso");
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Serviço Adicionado com sucesso");
                     
                     limparCampos();                 
                 }else{
                     //mensagem ERRO
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Impossível Excluir Usuário");
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Impossível Excluir Serviço");
                 }
             }
 
@@ -356,7 +355,7 @@ public class TelaServicos extends javax.swing.JFrame {
                 if (objServico != null && objServico.getCod() > 0){
                     preencherCampos();
                 }else{
-                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao buscar Usuário no BD!");
+                    CaixaDeDialogo.obterinstancia().exibirMensagem("Erro ao encontrar Serviço no Banco!");
                 }
             //}
 
@@ -382,16 +381,16 @@ public class TelaServicos extends javax.swing.JFrame {
     private boolean validarDados() {
         
         if (txtServico.getText().equals("")) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o nome do usuário", 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o nome do serviço", 'e');
             return false;
         }else if (txtPrestador.getText().equals("")) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o telefone do usuário", 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o prestador do serviço", 'e');
             return false;
         }else if (txtValor.getText().equals("")) {
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o login do usuário", 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o valor do serviço", 'e');
             return false;
         }else if (txtMedida.getText().equals("")){
-            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe o email do usuário", 'e');
+            CaixaDeDialogo.obterinstancia().exibirMensagem("Informe a medida do serviço", 'e');
             return false;
       
         }
